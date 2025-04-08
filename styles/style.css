@@ -11,6 +11,311 @@
 */
 
 .page {
+  font-family: var(--main-font);
+  background-color: var(--page-background-color);
+  background-image: var(--background-image);
+  background-size: cover;
+  background-attachment: fixed;
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-variation-settings: "wght" var(--text-weight);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 100px auto;
+  border: var(--border-width) solid var(--contour-color);
+  padding: clamp(120px, 0.75vw + 117.2px, 128px) 0;
+  font-family: var(--accent-font);
+  background: var(--page-background-color);
+  inline-size: 100%;
+}
+
+.header__title {
+  margin-block-end: 20px;
+  color: var(--contour-color);
+  font-weight: var(--text-weight);
+  font-size: clamp(49px, 3.4vw + 36.25px, 65px);
+  text-transform: uppercase;
+}
+
+.header__subtitle {
+  color: var(--contour-color);
+  font-weight: var(--text-weight);
+  font-size: clamp(14px, 0.8vw + 11px, 23px);
+  text-transform: uppercase;
+}
+
+.card {
+  border: var(--border-width) solid var(--contour-color);
+  background: var(--page-background-color);
+}
+
+.card:not(:last-child) {
+  margin-block-end: 50px;
+}
+
+.card__title {
+  margin: clamp(3px, 4px - (100vw - 375px) * 0.00094, 4px) 10px 3px;
+  color: var(--contour-color);
+  font-size: 18px;
+  font-variation-settings: "wght" var(--title-weight);
+}
+
+.card__image-container {
+  position: relative;
+  inline-size: 100%;
+  /* box-sizing: content-box; */
+}
+
+.card__image {
+  display: block;
+  box-sizing: content-box;
+  border-block-start: var(--border-width) solid var(--contour-color);
+  border-block-end: var(--border-width) solid var(--contour-color);
+  /* border: var(--border-width) solid var(--contour-color); */
+  object-fit: cover;
+  object-position: center;
+  inline-size: 100%;
+  /* block-size: 100%; */
+  /* inline-size: 371px; */
+  /* block-size: 375px; */
+  max-block-size: clamp(371px, calc(371px + (100vw - 375px) * 0.30516), 696px); /* Максимальная высота */
+  block-size: auto; /* Изображение сохраняет пропорции */
+}
+
+.card__image-label {
+  position: absolute;
+  opacity: 0.5;
+  color: var(--contour-color);
+  font-family: var(--accent-font);
+  font-weight: var(--text-weight);
+  font-size: 14px;
+  text-shadow: -1px 0 var(--page-background-color),
+    0 1px var(--page-background-color), 1px 0 var(--page-background-color),
+    0 -1px var(--page-background-color);
+  inset-block-start: 28px;
+  inset-inline-end: clamp(11px, calc(11px + (100vw - 375px) * 0.0131), 25px);
+  mix-blend-mode: hard-light;
+}
+
+@supports (-webkit-text-stroke: 1px var(--page-background-color)) {
+  .card__image-label {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--page-background-color);
+  }
+}
+
+.filter-grayscale {
+  filter: grayscale(70%);
+}
+
+.filter-hue-rotate {
+  filter: hue-rotate(270deg);
+}
+
+.filter-brightness {
+  filter: brightness(0.7);
+}
+
+.filter-saturate {
+  filter: saturate(3);
+}
+
+.filter-blur {
+  filter: blur(2px);
+}
+
+.filter-multiple {
+  filter: grayscale(70%) hue-rotate(270deg) brightness(0.7) saturate(3)
+    blur(2px);
+}
+
+.filter-contrast {
+  filter: contrast(0.4);
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: clamp(24px, calc(24px + (100vw - 375px) * 0.00282), 29px) 25px
+    clamp(26px, calc(24px + (100vw - 375px) * 0.00282), 28px);
+}
+
+.card__text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  color: var(--contour-color);
+  font-weight: var(--text-weight);
+  font-size: 18px;
+  line-height: 117%;
+}
+
+.card__buttons-container {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+.button {
+  position: relative;
+  z-index: 1;
+  border: var(--border-width) solid var(--contour-color);
+  overflow: hidden; /* необходимо для метода с translate */
+  color: var(--contour-color);
+  font-family: var(--accent-font);
+  font-weight: var(--text-weight);
+  font-size: 14px;
+  line-height: 90%;
+  background: var(--page-background-color);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.button:focus {
+  box-shadow: 2px 2px 0 0 var(--contour-color);
+  outline: none;
+}
+
+/* Псевдоэлемент для эффекта заливки */
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* покрываем всю кнопку */
+  z-index: -1;
+  background-color: var(--contour-color); /* черный фон для заливки */
+  transition: transform 0.5s ease-in-out; /* плавность анимации */
+  transform: translateX(-100%); /* начальное положение за пределами кнопки */
+}
+
+/* Анимация при наведении */
+.button:hover::before {
+  transform: translateX(0); /* заливаем кнопку при наведении */
+}
+
+/* Стили для кнопки иконки сердца */
+.card__icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Центрируем по вертикали */
+  border: var(--border-width) solid transparent; /* Прозрачная граница в обычном состоянии */
+  padding: 0;
+  background-color: transparent;
+  transition: border-color 0.3s ease; /* Плавный переход для границы */
+  /* padding: 9px; */
+  /* Подгоняем размер, чтобы соответствовать соседней кнопке */
+  /* padding-inline-end: 4px; */
+  cursor: pointer;
+  block-size: 36px;
+  inline-size: 39px;
+}
+
+/* Убираем стандартную обводку при фокусе */
+.card__icon-button:focus {
+  outline: none;
+}
+
+/* Добавляем стилизованную границу при focus-visible */
+.card__icon-button:focus-visible {
+  border-color: var(
+    --contour-color
+  ); /* Используем акцентный цвет из переменной */
+}
+
+.card__like-button {
+  padding: 0;
+  /* padding: 12.5px 0; */
+  min-inline-size: 130px;
+  max-block-size: 38px;
+}
+
+.button__text {
+  position: relative;
+  z-index: 1;
+  color: var(--page-background-color); /* белый текст для режима смешивания */
+  font-family: var(--accent-font);
+  font-weight: var(--text-weight);
+  font-size: 14px;
+  line-height: 90%;
+  mix-blend-mode: difference;
+}
+
+.page__button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin: calc(52px - (100vw - 375px) * 2 / 1065) auto
+    calc(100px + (100vw - 375px) * 3 / 1065);
+  padding: 15px 20px;
+  text-align: center;
+}
+
+.modal-window {
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px clamp(30px, -0.94vw + 43.52px, 40px);
+  color: var(--contour-color);
+  font-weight: var(--text-weight);
+  font-size: 14px;
+  text-transform: uppercase;
+  background: var(--page-background-color);
+  max-inline-size: clamp(341px, 335.4px + 1.5vw, 357px);
+}
+
+.modal-window[open] {
+  display: flex; /* Меняем на flex только когда окно открыто */
+}
+
+.modal-window::backdrop {
+  background-color: var(--modal-backdrop-color);
+}
+
+.modal-window__content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal-window__icon {
+  flex-shrink: 0;
+  inline-size: 39px;
+  block-size: 39px;
+}
+
+.modal-window__text {
+  font-family: var(--accent-font);
+  line-height: 150%;
+}
+
+.modal-window__button {
+  padding: 11px 0;
+  text-transform: uppercase;
+  inline-size: 100%;
+}
+
+.floppy-icon {
+  position: relative;
+  z-index: 1;
+  fill: var(
+    --page-background-color
+  ); /* устанавливаем белое заполнение для SVG */
+  block-size: clamp(21px, 28px - (100vw - 375px) * 0.00657, 28px);
+  inline-size: clamp(21px, 28px - (100vw - 375px) * 0.00657, 28px);
+  mix-blend-mode: difference; /* чтобы иконка тоже меняла цвет */
+}
+
+.like-icon {
+  block-size: 36px;
+  inline-size: 39px;
+}
+
+@media (width < 376px) {
+  .page__button {
+    flex-direction: column;
+  }
 }
