@@ -1,6 +1,6 @@
-- [GitHub](https://github.com/Triganus/zakrivayuschiy-teg-f)
+- GitHub: https://github.com/Triganus/zakrivayuschiy-teg-f
 
-- [GitHub Pages](https://triganus.github.io/zakrivayuschiy-teg-f/)
+- GitHub Pages: https://triganus.github.io/zakrivayuschiy-teg-f/
 
 # Закрывающий тег
 
