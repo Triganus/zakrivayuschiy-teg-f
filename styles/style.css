@@ -9,56 +9,59 @@
  * ✦ button__text — для обозначения текстового элемента внутри кнопки
 */
 
-/* ОСНОВНЫЕ ЭЛЕМЕНТЫ СТРАНИЦЫ
-   ========================== */
+/* 
+ * БАЗОВАЯ СТРУКТУРА СТРАНИЦЫ
+ */
 
 .page {
-  font-family: var(--main-font);
+  background-attachment: fixed;
   background-color: var(--page-background-color);
   background-image: var(--background-image);
   background-size: cover;
-  background-attachment: fixed;
-  min-inline-size: 320px;
-  min-block-size: 100dvb;
+  font-family: var(--main-font);
   font-variation-settings: "wght" var(--text-weight);
+  min-block-size: 100dvb;
+  min-inline-size: 320px;
 }
 
-/* ШАПКА САЙТА
-   ========== */
+/* 
+ * КОМПОНЕНТЫ ЗАГОЛОВКА
+ */
 
 .header {
+  align-items: center;
+  background: var(--page-background-color);
+  border: var(--border-width) solid var(--contour-color);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 100px auto;
-  border: var(--border-width) solid var(--contour-color);
-  padding: clamp(120px, 0.75vw + 117.2px, 128px) 0;
   font-family: var(--accent-font);
-  background: var(--page-background-color);
   inline-size: 100%;
+  margin: 100px auto;
+  padding: clamp(120px, 0.75vw + 117.2px, 128px) 0;
 }
 
 .header__title {
-  margin-block-end: 20px;
   color: var(--contour-color);
-  font-weight: var(--text-weight);
   font-size: clamp(49px, 3.4vw + 36.25px, 65px);
+  font-weight: var(--text-weight);
+  margin-block-end: 20px;
   text-transform: uppercase;
 }
 
 .header__subtitle {
   color: var(--contour-color);
-  font-weight: var(--text-weight);
   font-size: clamp(14px, 0.8vw + 11px, 23px);
+  font-weight: var(--text-weight);
   text-transform: uppercase;
 }
 
-/* КАРТОЧКИ КОНТЕНТА
-   ================= */
+/* 
+ * КАРТОЧКИ С КОНТЕНТОМ
+ */
 
 .card {
-  border: var(--border-width) solid var(--contour-color);
   background: var(--page-background-color);
+  border: var(--border-width) solid var(--contour-color);
 }
 
 .card:not(:last-child) {
@@ -66,56 +69,82 @@
 }
 
 .card__title {
-  margin: clamp(3px, 4px - (100vw - 375px) * 0.00094, 4px) 10px 3px;
   color: var(--contour-color);
   font-size: 18px;
   font-variation-settings: "wght" var(--title-weight);
+  margin: clamp(3px, 4px - (100vw - 375px) * 0.00094, 4px) 10px 3px;
 }
 
-/* ИЗОБРАЖЕНИЯ И ИХ КОНТЕЙНЕРЫ
-   ========================== */
+.card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: clamp(24px, calc(24px + (100vw - 375px) * 0.00282), 29px) 25px
+    clamp(26px, calc(24px + (100vw - 375px) * 0.00282), 28px);
+}
+
+.card__text-container {
+  color: var(--contour-color);
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: var(--text-weight);
+  gap: 27px;
+  line-height: 117%;
+}
+
+.card__buttons-container {
+  display: flex;
+  gap: 8px;
+  justify-content: end;
+}
+
+/* 
+ * ГАЛЕРЕЯ И ИЗОБРАЖЕНИЯ
+ */
 
 .card__image-container {
-  position: relative;
   inline-size: 100%;
+  position: relative;
 }
 
 .card__image {
-  display: block;
-  box-sizing: content-box;
-  border-block-start: var(--border-width) solid var(--contour-color);
+  block-size: auto;
   border-block-end: var(--border-width) solid var(--contour-color);
-  object-fit: cover;
-  object-position: center;
+  border-block-start: var(--border-width) solid var(--contour-color);
+  box-sizing: content-box;
+  display: block;
   inline-size: 100%;
   max-block-size: clamp(371px, calc(371px + (100vw - 375px) * 0.30516), 696px);
-  block-size: auto;
+  object-fit: cover;
+  object-position: center;
 }
 
 .card__image-label {
-  position: absolute;
-  opacity: 0.5;
   color: var(--contour-color);
   font-family: var(--accent-font);
-  font-weight: var(--text-weight);
   font-size: 14px;
-  text-shadow: -1px 0 var(--page-background-color),
-    0 1px var(--page-background-color), 1px 0 var(--page-background-color),
-    0 -1px var(--page-background-color);
+  font-weight: var(--text-weight);
   inset-block-start: 28px;
   inset-inline-end: clamp(11px, calc(11px + (100vw - 375px) * 0.0131), 25px);
   mix-blend-mode: hard-light;
+  opacity: 0.5;
+  position: absolute;
+  text-shadow: -1px 0 var(--page-background-color),
+    0 1px var(--page-background-color), 1px 0 var(--page-background-color),
+    0 -1px var(--page-background-color);
 }
 
 @supports (-webkit-text-stroke: 1px var(--page-background-color)) {
   .card__image-label {
-    text-shadow: none;
     -webkit-text-stroke: 1px var(--page-background-color);
+    text-shadow: none;
   }
 }
 
-/* ФИЛЬТРЫ ДЛЯ ИЗОБРАЖЕНИЙ
-   ======================= */
+/* 
+ * МЕДИА-ФИЛЬТРЫ ДЛЯ ИЗОБРАЖЕНИЙ
+ */
 
 .filter-grayscale {
   filter: grayscale(70%);
@@ -138,127 +167,110 @@
 }
 
 .filter-multiple {
-  filter: grayscale(70%) hue-rotate(270deg) brightness(0.7) saturate(3)
-    blur(2px);
+  filter: grayscale(70%) 
+          hue-rotate(270deg) 
+          brightness(0.7) 
+          saturate(3)
+          blur(2px);
 }
 
 .filter-contrast {
   filter: contrast(0.4);
 }
 
-/* КОНТЕНТ КАРТОЧЕК И КНОПКИ
-   ======================== */
+/* 
+ * ИНТЕРАКТИВНЫЕ ЭЛЕМЕНТЫ
+ */
 
-.card__content {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  padding: clamp(24px, calc(24px + (100vw - 375px) * 0.00282), 29px) 25px
-    clamp(26px, calc(24px + (100vw - 375px) * 0.00282), 28px);
-}
-
-.card__text-container {
-  display: flex;
-  flex-direction: column;
-  gap: 27px;
-  color: var(--contour-color);
-  font-weight: var(--text-weight);
-  font-size: 18px;
-  line-height: 117%;
-}
-
-.card__buttons-container {
-  display: flex;
-  justify-content: end;
-  gap: 8px;
-}
-
-/* СТИЛИ КНОПОК
-   =========== */
-
+/* Базовые стили кнопок */
 .button {
-  position: relative;
-  z-index: 1;
-  border: var(--border-width) solid var(--contour-color);
-  overflow: hidden; /* необходимо для метода с translate */
-  color: var(--contour-color);
-  font-family: var(--accent-font);
-  font-weight: var(--text-weight);
-  font-size: 14px;
-  line-height: 90%;
   background: var(--page-background-color);
-  transition: box-shadow 0.3s ease;
+  border: var(--border-width) solid var(--contour-color);
+  color: var(--contour-color);
   cursor: pointer;
+  font-family: var(--accent-font);
+  font-size: 14px;
+  font-weight: var(--text-weight);
+  line-height: 90%;
+  overflow: hidden;
+  position: relative;
+  transition: box-shadow 0.3s ease;
+  z-index: 1;
 }
 
+/* Эффект фокуса на кнопке */
 .button:focus {
   box-shadow: 2px 2px 0 0 var(--contour-color);
   outline: none;
 }
 
-/* Псевдоэлемент для эффекта заливки */
+/* Эффект заливки при наведении */
 .button::before {
+  background-color: var(--contour-color);
   content: "";
+  inset: 0;
   position: absolute;
-  inset: 0; /* покрываем всю кнопку */
+  transform: translateX(-100%);
+  transition: transform 0.5s ease-in-out;
   z-index: -1;
-  background-color: var(--contour-color); /* черный фон для заливки */
-  transition: transform 0.5s ease-in-out; /* плавность анимации */
-  transform: translateX(-100%); /* начальное положение за пределами кнопки */
 }
 
-/* Анимация при наведении */
 .button:hover::before {
-  transform: translateX(0); /* заливаем кнопку при наведении */
+  transform: translateX(0);
 }
 
-/* Стили для кнопки иконки сердца */
+/* Кнопка иконки сердца */
 .card__icon-button {
-  display: flex;
-  justify-content: center;
-  align-items: center; /* Центрируем по вертикали */
-  border: var(--border-width) solid transparent; /* Прозрачная граница в обычном состоянии */
-  padding: 0;
+  align-items: center;
   background-color: transparent;
-  transition: border-color 0.3s ease;
-  cursor: pointer;
   block-size: 36px;
+  border: var(--border-width) solid transparent;
+  cursor: pointer;
+  display: flex;
   inline-size: 39px;
+  justify-content: center;
+  padding: 0;
+  transition: border-color 0.3s ease;
 }
 
-/* Убираем стандартную обводку при фокусе */
 .card__icon-button:focus {
   outline: none;
 }
 
-/* Добавляем стилизованную границу при focus-visible */
 .card__icon-button:focus-visible {
-  border-color: var(
-    --contour-color
-  );
+  border-color: var(--contour-color);
 }
 
+/* Кнопка лайка с текстом */
 .card__like-button {
-  padding: 0;
-  min-inline-size: 130px;
   max-block-size: 38px;
+  min-inline-size: 130px;
+  padding: 0;
 }
 
+/* Текст внутри кнопки */
 .button__text {
-  position: relative;
-  z-index: 1;
-  color: var(--page-background-color); /* белый текст для режима смешивания */
+  color: var(--page-background-color);
   font-family: var(--accent-font);
-  font-weight: var(--text-weight);
   font-size: 14px;
+  font-weight: var(--text-weight);
   line-height: 90%;
   mix-blend-mode: difference;
+  position: relative;
+  z-index: 1;
 }
 
+/* Иконка сердца */
+.like-icon {
+  block-size: 36px;
+  inline-size: 39px;
+}
+
+/* Кнопка сохранения внизу страницы */
 .page__button {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
   gap: 8px;
   margin: calc(52px - (100vw - 375px) * 2 / 1065) auto
     calc(100px + (100vw - 375px) * 3 / 1065);
@@ -266,16 +278,30 @@
   text-align: center;
 }
 
+/* Иконка дискеты */
+.floppy-icon {
+  block-size: clamp(21px, 28px - (100vw - 375px) * 0.00657, 28px);
+  fill: var(--page-background-color);
+  inline-size: clamp(21px, 28px - (100vw - 375px) * 0.00657, 28px);
+  mix-blend-mode: difference;
+  position: relative;
+  z-index: 1;
+}
+
+/* 
+ * МОДАЛЬНОЕ ОКНО
+ */
+
 .modal-window {
-  flex-direction: column;
-  gap: 30px;
-  padding: 30px clamp(30px, -0.94vw + 43.52px, 40px);
-  color: var(--contour-color);
-  font-weight: var(--text-weight);
-  font-size: 14px;
-  text-transform: uppercase;
   background: var(--page-background-color);
+  color: var(--contour-color);
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: var(--text-weight);
+  gap: 30px;
   max-inline-size: clamp(341px, 335.4px + 1.5vw, 357px);
+  padding: 30px clamp(30px, -0.94vw + 43.52px, 40px);
+  text-transform: uppercase;
 }
 
 .modal-window[open] {
@@ -287,15 +313,15 @@
 }
 
 .modal-window__content {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 20px;
 }
 
 .modal-window__icon {
+  block-size: 39px;
   flex-shrink: 0;
   inline-size: 39px;
-  block-size: 39px;
 }
 
 .modal-window__text {
@@ -304,26 +330,14 @@
 }
 
 .modal-window__button {
+  inline-size: 100%;
   padding: 11px 0;
   text-transform: uppercase;
-  inline-size: 100%;
 }
 
-.floppy-icon {
-  position: relative;
-  z-index: 1;
-  fill: var(
-    --page-background-color
-  );
-  block-size: clamp(21px, 28px - (100vw - 375px) * 0.00657, 28px);
-  inline-size: clamp(21px, 28px - (100vw - 375px) * 0.00657, 28px);
-  mix-blend-mode: difference;
-}
-
-.like-icon {
-  block-size: 36px;
-  inline-size: 39px;
-}
+/* 
+ * АДАПТИВНОСТЬ
+ */
 
 @media (width < 376px) {
   .page__button {
