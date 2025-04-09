@@ -106,6 +106,7 @@
 .card__image-container {
   inline-size: 100%;
   position: relative;
+  border-inline: var(--border-width) solid var(--contour-color);
 }
 
 .card__image {
@@ -116,6 +117,7 @@
   display: block;
   inline-size: 100%;
   max-block-size: clamp(371px, calc(371px + (100vw - 375px) * 0.30516), 696px);
+  aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center;
 }
@@ -198,8 +200,13 @@
   z-index: 1;
 }
 
-/* Эффект фокуса на кнопке */
+/* Сброс стандартного фокуса */
 .button:focus {
+  outline: none;
+}
+
+/* Стилизация фокуса при навигации с клавиатуры */
+.button:focus-visible {
   box-shadow: 2px 2px 0 0 var(--contour-color);
   outline: none;
 }

@@ -24,7 +24,7 @@
 
 ## Запуск
 
-Откройте `index.html` в браузере или воспользуйтесь Live Server в VSCode.
+Откройте `index.html` в браузере или воспользуйтесь Live Server в VSCode.s
 
 
 
