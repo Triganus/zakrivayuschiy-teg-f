@@ -1,3 +1,7 @@
+- [GitHub](https://github.com/Triganus/zakrivayuschiy-teg-f)
+
+- [GitHub Pages](https://triganus.github.io/zakrivayuschiy-teg-f/)
+
 # Закрывающий тег
 
 Интерактивная страница с эффектами и анимациями, демонстрирующая личную историю изучения веб-разработки.
@@ -22,11 +26,5 @@
 
 Откройте `index.html` в браузере или воспользуйтесь Live Server в VSCode.
 
-## Ссылки
 
-- [GitHub Pages](https://triganus.github.io/zakrivayuschiy-teg-f/)
-
-## Автор
-
-Ваше имя - [GitHub](https://github.com/Triganus/zakrivayuschiy-teg-f)
 
